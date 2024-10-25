@@ -39,8 +39,5 @@
     <br>
     <%= f.submit "Save", class: "mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
     <%= turbo_frame_tag "update_errors" do %>
-      <% if @riding.errors.any? %>
-
-      <% end %>
     <% end %>
   <% end %>

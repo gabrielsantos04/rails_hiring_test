@@ -23,11 +23,16 @@ class PollingLocation < ApplicationRecord
 
   def validate_uniqueness
     exists = PollingLocation
-               .where(riding_id: self.riding_id,
+               .where(#riding_id: self.riding_id, should it be by riding_id?
                       title: self.title,
                       address: self.address,
                       city: self.city,
                       postal_code: self.postal_code).count == 0
     errors.add(:duplication, "- Polling Location must be unique") unless exists
+  end
+
+  def self.polls
+    collection = PollingLocation.all.includes(:polls, :riding)
+    ActiveModel::SerializableResource.new(collection, each_serializer: PollingLocationSerializer).as_json
   end
 end

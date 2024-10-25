@@ -1,6 +1,6 @@
 class RidingsController < ApplicationController
-  before_action :set_riding, only: %i[ show edit update destroy edit_polling_locations add_new_polling_location ]
-  before_action :set_polls, only: %i[ edit_polling_locations add_new_polling_location ]
+  before_action :set_riding, only: %i[ show edit update destroy edit_polling_locations]
+  before_action :set_polls, only: %i[ edit_polling_locations ]
 
   # GET /ridings or /ridings.json
   def index
@@ -9,7 +9,7 @@ class RidingsController < ApplicationController
 
   # GET /ridings/1 or /ridings/1.json
   def show
-    @polling_locations = @riding.polling_locations
+    @polling_locations = @riding.polling_locations.includes(:polls)
   end
 
   # GET /ridings/new
