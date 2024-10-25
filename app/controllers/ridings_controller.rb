@@ -44,7 +44,6 @@ class RidingsController < ApplicationController
   def update
     respond_to do |format|
       if @riding.update(riding_params)
-        #update_polls
         format.html { redirect_to riding_url(@riding), notice: "Riding was successfully updated." }
         format.json { render :show, status: :ok, location: @riding }
       else
